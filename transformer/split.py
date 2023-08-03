@@ -24,7 +24,6 @@ def split_by_character():
             )
 
             if INCLUDE_METADATA:
-                print(data[0])
                 texts = text_splitter.create_documents(
                     [d['page_content'] for d in data], [d['metadata'] for d in data])
             else:
