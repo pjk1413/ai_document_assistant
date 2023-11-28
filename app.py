@@ -1,15 +1,5 @@
 import argparse
-import os
-import subprocess
 
-import flask
-import scrapy.utils.reactor
-from scrapy.crawler import CrawlerRunner, CrawlerProcess
-from scrapy.utils.log import configure_logging
-from scrapy.utils.project import get_project_settings
-
-# from crawler.confluence.to_json import run
-from crawler.crawler.spiders.domain_spyder import DomainSpyder
 from db.chroma import load_chroma_db, query_collection, reset
 from loader.confluence import load_confluence
 from server.server import server
@@ -23,13 +13,6 @@ parser.add_argument("-chroma", "--Chroma", help="Performs a given action with ch
 parser.add_argument("-serve", "--Serve", action='store_true')
 
 args = parser.parse_args()
-
-# if args.Crawl:
-#     settings = get_project_settings()
-#     process = CrawlerProcess(settings)
-#     process.crawl(DomainSpyder)
-#     process.start()
-#     process.join()
 
 if args.Load:
     load_from = args.Load

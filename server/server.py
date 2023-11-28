@@ -51,7 +51,6 @@ def chat():
                                            verbose=True)
     llm_response = qa_chain(request.json['input'])
     print(llm_response)
-    # print(llm_response['metadata'])
     return _parse_response(llm_response)
 
 

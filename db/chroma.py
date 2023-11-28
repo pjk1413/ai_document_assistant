@@ -16,22 +16,14 @@ def get_db():
     embeddings = HuggingFaceEmbeddings(model_name=emb_model)
 
     documents = split_by_character()
-    # collection.add(ids=[d.metadata['id'] for d in documents],
-    #                documents=[d.page_content for d in documents],
-    #                metadatas=[d.metadata for d in documents])
     vectordb = Chroma.from_documents(
         persist_directory=CHROMA_DB_PATH,
         embedding=embeddings,
         collection_name=CHROMA_COLLECTION,
-        # metadatas=[d.metadata for d in documents],
-        # collection_metadata=[d.metadata for d in documents],
         ids=[d.metadata['id'] for d in documents],
         documents=documents)
 
-    # vectordb = Chroma(persist_directory=CHROMA_DB_PATH,
-    #                   embedding_function=embeddings)
     vectordb.persist()
-    # print(vectordb.search('BitCurator', 'similarity'))
     return vectordb
 
 
